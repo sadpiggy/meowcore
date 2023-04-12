@@ -1,0 +1,21 @@
+objects := main.o
+target := main memory_test
+all: $(target)
+
+main: $(objects)
+	gcc -o $@ $^
+
+memory_test: test/memory_test.o memory/buddy_system.o
+	gcc -o $@ $^
+
+main.o: main.c
+
+memory_test.o: test/memory_test.c memory/buddy_system.h
+buddy_system.o: memory/buddy_system.c
+
+
+.PHONY : clean
+clean:
+	rm *.o
+	rm */*.o
+	rm main
