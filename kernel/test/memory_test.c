@@ -4,8 +4,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <assert.h>
-#include "../util/list.h"
-#include "../memory/buddy_system.h"
+#include "list.h"
+#include "buddy_system.h"
 
 
 #define PAGE_SIZE   (4 * 1024)

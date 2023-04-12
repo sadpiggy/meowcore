@@ -16,6 +16,6 @@ buddy_system.o: memory/buddy_system.c
 
 .PHONY : clean
 clean:
-	rm *.o
-	rm */*.o
-	rm main
+	rm -f *.o
+	rm -f */*.o
+	rm -f $(target)

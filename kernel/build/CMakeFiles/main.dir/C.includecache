@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/main.c
+stdio.h
+-
+stdint.h
+-
+

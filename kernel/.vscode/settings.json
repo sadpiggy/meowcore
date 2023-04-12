@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "buddy_system.h": "c",
+        "assert.h": "c",
+        "stdint.h": "c",
+        "stdio.h": "c"
+    }
+}

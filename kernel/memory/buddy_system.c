@@ -40,7 +40,7 @@ struct physical_page *buddy_alloc_pages(struct buddy_system *buddy, int order) {
             list_del(&page->list);
             page->order = order;
             int remaining_order = i - 1;
-            struct physical_page *remaining_page = (uintptr_t)page + (physical_page_size << order);
+            struct physical_page *remaining_page = (struct physical_page *)((uintptr_t)page + (physical_page_size << order));
             while (remaining_order >= order) {
                 remaining_page->order = remaining_order;
                 list_add_tail(&remaining_page->list, &buddy->free_area[remaining_order]);

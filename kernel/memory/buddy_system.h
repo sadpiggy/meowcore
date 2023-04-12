@@ -1,6 +1,6 @@
 #ifndef BUDDY_SYSTEM_H
 #define BUDDY_SYSTEM_H
-#include "../util/list.h"
+#include "list.h"
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>

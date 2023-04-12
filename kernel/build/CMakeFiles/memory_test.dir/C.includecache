@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../memory/buddy_system.h
+list.h
+../memory/list.h
+stdio.h
+-
+stdint.h
+-
+string.h
+-
+
+../util/list.h
+
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/test/memory_test.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+string.h
+-
+stdbool.h
+-
+assert.h
+-
+list.h
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/test/list.h
+buddy_system.h
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/test/buddy_system.h
+
