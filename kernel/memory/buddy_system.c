@@ -1,6 +1,7 @@
 #include "buddy_system.h"
 #include <math.h>
-#define physical_page_size (sizeof(struct physical_page))
+// #define physical_page_size (sizeof(struct physical_page))
+const uint64_t physical_page_size = PAGE_SIZE;
 // 返回order,1*(2^n) + 
 int get_order(int size) {
     int order = 0;
@@ -24,7 +25,7 @@ void buddy_init(struct buddy_system *buddy, struct physical_page *start_page, lo
         if (remaining_pages >= (1 << order)) {
             start_page->order = order;
             list_add_tail(&start_page->list, &buddy->free_area[order]);
-            start_page += (1 << order)*physical_page_size;
+            start_page = (struct physical_page *)((uint64_t)start_page +   (1 << order)*physical_page_size);
             remaining_pages -= (1 << order);
         } else {
             order--;
@@ -35,18 +36,21 @@ void buddy_init(struct buddy_system *buddy, struct physical_page *start_page, lo
 struct physical_page *buddy_alloc_pages(struct buddy_system *buddy, int order) {
     for (int i = order; i < NR_QUANTUM; ++i) {
         if (!list_empty(&buddy->free_area[i])) {
-            
+            // printf("order==%lu\n",order);
             struct physical_page *page = list_first_entry(&buddy->free_area[i], struct physical_page, list);
+            // printf("page==%lu order==%d\n",page,page->order);
             list_del(&page->list);
             page->order = order;
-            int remaining_order = i - 1;
+            int remaining_order = order;
             struct physical_page *remaining_page = (struct physical_page *)((uintptr_t)page + (physical_page_size << order));
-            while (remaining_order >= order) {
+            while (remaining_order < i) {
+                // printf("remain_page==%lu,order==%d\n",remaining_page,remaining_order);
                 remaining_page->order = remaining_order;
                 list_add_tail(&remaining_page->list, &buddy->free_area[remaining_order]);
-                remaining_page += (1 << (remaining_order))*physical_page_size;
-                remaining_order--;
+                remaining_page = (struct physical_page *)((uint64_t)remaining_page +  (1 << (remaining_order))*physical_page_size);
+                remaining_order++;
             }
+            // printf("page==%lu returnpage\n",page);
 
             return page;
         }
@@ -55,9 +59,26 @@ struct physical_page *buddy_alloc_pages(struct buddy_system *buddy, int order) {
     return NULL;
 }
 
+int calculate_order(struct buddy_system *buddy, struct physical_page *page) {
+    uintptr_t base_addr = (uintptr_t)page;
+    uintptr_t buddy_start_addr = (uintptr_t)buddy->start_page;
 
-void buddy_free_pages(struct buddy_system *buddy, struct physical_page *page) {
+    for (int order = 0; order <= NR_QUANTUM-1; ++order) {
+        uintptr_t mask = (1 << (order + 12)) - 1;
+
+        if ((base_addr ^ buddy_start_addr) & mask) {
+            return order - 1;
+        }
+    }
+
+    return NR_QUANTUM-1;
+}
+
+void buddy_free_pages(struct buddy_system *buddy, struct physical_page *page,int page_order) {
+    // order不能等于page->order
+    // printf("calorder==%d\n",calculate_order(buddy,page));
     int order = page->order;
+    order = page_order;
 
     while (order < 10) {
         struct physical_page *buddy_page = (struct physical_page *)((uintptr_t)page ^ (physical_page_size << order));

@@ -124,6 +124,19 @@ myclean/fast:
 .PHONY : myclean/fast
 
 #=============================================================================
+# Target rules for targets named slab_test
+
+# Build rule for target.
+slab_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 slab_test
+.PHONY : slab_test
+
+# fast build rule for target.
+slab_test/fast:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/build
+.PHONY : slab_test/fast
+
+#=============================================================================
 # Target rules for targets named memory_test
 
 # Build rule for target.
@@ -136,52 +149,13 @@ memory_test/fast:
 	$(MAKE) -f CMakeFiles/memory_test.dir/build.make CMakeFiles/memory_test.dir/build
 .PHONY : memory_test/fast
 
-#=============================================================================
-# Target rules for targets named main
-
-# Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main
-.PHONY : main
-
-# fast build rule for target.
-main/fast:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
-
-main.o: main.c.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.s
-.PHONY : main.c.s
-
 memory/buddy_system.o: memory/buddy_system.c.o
 
 .PHONY : memory/buddy_system.o
 
 # target to build an object file
 memory/buddy_system.c.o:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/memory/buddy_system.c.o
 	$(MAKE) -f CMakeFiles/memory_test.dir/build.make CMakeFiles/memory_test.dir/memory/buddy_system.c.o
 .PHONY : memory/buddy_system.c.o
 
@@ -191,6 +165,7 @@ memory/buddy_system.i: memory/buddy_system.c.i
 
 # target to preprocess a source file
 memory/buddy_system.c.i:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/memory/buddy_system.c.i
 	$(MAKE) -f CMakeFiles/memory_test.dir/build.make CMakeFiles/memory_test.dir/memory/buddy_system.c.i
 .PHONY : memory/buddy_system.c.i
 
@@ -200,8 +175,36 @@ memory/buddy_system.s: memory/buddy_system.c.s
 
 # target to generate assembly for a file
 memory/buddy_system.c.s:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/memory/buddy_system.c.s
 	$(MAKE) -f CMakeFiles/memory_test.dir/build.make CMakeFiles/memory_test.dir/memory/buddy_system.c.s
 .PHONY : memory/buddy_system.c.s
+
+memory/slab.o: memory/slab.c.o
+
+.PHONY : memory/slab.o
+
+# target to build an object file
+memory/slab.c.o:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/memory/slab.c.o
+.PHONY : memory/slab.c.o
+
+memory/slab.i: memory/slab.c.i
+
+.PHONY : memory/slab.i
+
+# target to preprocess a source file
+memory/slab.c.i:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/memory/slab.c.i
+.PHONY : memory/slab.c.i
+
+memory/slab.s: memory/slab.c.s
+
+.PHONY : memory/slab.s
+
+# target to generate assembly for a file
+memory/slab.c.s:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/memory/slab.c.s
+.PHONY : memory/slab.c.s
 
 test/memory_test.o: test/memory_test.c.o
 
@@ -230,6 +233,33 @@ test/memory_test.c.s:
 	$(MAKE) -f CMakeFiles/memory_test.dir/build.make CMakeFiles/memory_test.dir/test/memory_test.c.s
 .PHONY : test/memory_test.c.s
 
+test/slab_test.o: test/slab_test.c.o
+
+.PHONY : test/slab_test.o
+
+# target to build an object file
+test/slab_test.c.o:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/test/slab_test.c.o
+.PHONY : test/slab_test.c.o
+
+test/slab_test.i: test/slab_test.c.i
+
+.PHONY : test/slab_test.i
+
+# target to preprocess a source file
+test/slab_test.c.i:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/test/slab_test.c.i
+.PHONY : test/slab_test.c.i
+
+test/slab_test.s: test/slab_test.c.s
+
+.PHONY : test/slab_test.s
+
+# target to generate assembly for a file
+test/slab_test.c.s:
+	$(MAKE) -f CMakeFiles/slab_test.dir/build.make CMakeFiles/slab_test.dir/test/slab_test.c.s
+.PHONY : test/slab_test.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -239,17 +269,20 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... myclean"
+	@echo "... slab_test"
 	@echo "... memory_test"
-	@echo "... main"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 	@echo "... memory/buddy_system.o"
 	@echo "... memory/buddy_system.i"
 	@echo "... memory/buddy_system.s"
+	@echo "... memory/slab.o"
+	@echo "... memory/slab.i"
+	@echo "... memory/slab.s"
 	@echo "... test/memory_test.o"
 	@echo "... test/memory_test.i"
 	@echo "... test/memory_test.s"
+	@echo "... test/slab_test.o"
+	@echo "... test/slab_test.i"
+	@echo "... test/slab_test.s"
 .PHONY : help
 
 

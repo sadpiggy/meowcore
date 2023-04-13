@@ -1,5 +1,5 @@
 /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/build/CMakeFiles/rebuild_cache.dir
 /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/build/CMakeFiles/edit_cache.dir
 /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/build/CMakeFiles/myclean.dir
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/build/CMakeFiles/slab_test.dir
 /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/build/CMakeFiles/memory_test.dir
-/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/build/CMakeFiles/main.dir

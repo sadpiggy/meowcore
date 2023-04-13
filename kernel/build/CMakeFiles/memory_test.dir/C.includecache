@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../memory/PT.h
+stdint.h
+-
+
 ../memory/buddy_system.h
 list.h
 ../memory/list.h
@@ -15,8 +19,32 @@ stdint.h
 -
 string.h
 -
+PT.h
+../memory/PT.h
 
 ../util/list.h
+
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/PT.h
+stdint.h
+-
+
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/buddy_system.c
+buddy_system.h
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/buddy_system.h
+math.h
+-
+
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/buddy_system.h
+list.h
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/list.h
+stdio.h
+-
+stdint.h
+-
+string.h
+-
+PT.h
+/mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/PT.h
 
 /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/test/memory_test.c
 stdio.h

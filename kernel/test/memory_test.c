@@ -8,11 +8,9 @@
 #include "buddy_system.h"
 
 
-#define PAGE_SIZE   (4 * 1024)
 
 int main() {
-    int physical_page_size = (sizeof(struct physical_page));
-    int MAX_ORDER = 10;
+    int MAX_ORDER = 2;
     const size_t ALIGNED_SIZE = (1 << MAX_ORDER) * PAGE_SIZE;
     void *aligned_memory;
     int result = posix_memalign(&aligned_memory, ALIGNED_SIZE, ALIGNED_SIZE);
@@ -23,28 +21,39 @@ int main() {
 
     // 初始化buddy分配器
     buddy_init(&buddy, pages, (1 << MAX_ORDER));
+    printf("firstPage==%lu\n",(uint64_t)aligned_memory);
 
     page = list_first_entry(&buddy.free_area[1],struct physical_page,list);
     // printf("firstPage==%lu\n",page);
 
     // 分配2个物理页
-    page = buddy_alloc_pages(&buddy, 9);
+    page = buddy_alloc_pages(&buddy, 0);
+    int order1 = page->order;
     if (page != NULL) {
-        printf("Allocated 1<<9 pages==%lu\n",(uint64_t)page);
+        printf("Allocated 1<<0 pages==%lu\n",(uint64_t)page);
 
     }
+    memset(page,'$',PAGE_SIZE);
+    // printf("pagevalue==%c\n",page);
 
     // 分配8个物理页
-    page2 = buddy_alloc_pages(&buddy, 9);
+    page2 = buddy_alloc_pages(&buddy, 0);
+    int order2 = page2->order;
     if (page2 != NULL) {
-        printf("Allocated 1<<9 pages==%lu\n",(uint64_t)page2);
+        printf("Allocated 1<<0 pages==%lu\n",(uint64_t)page2);
        
     }
-    buddy_free_pages(&buddy, page);
-    buddy_free_pages(&buddy, page2);
-    page = buddy_alloc_pages(&buddy, 10);
+    memset(page2,'b',PAGE_SIZE);
+    // printf("page2value==%c\n",(char*)page2);
+
+    
+    
+    
+    buddy_free_pages(&buddy, page,order1);
+    buddy_free_pages(&buddy, page2,order2);
+    page = buddy_alloc_pages(&buddy, MAX_ORDER);
     if (page != NULL) {
-        printf("Allocated 1<<10 pages%lu\n",(uint64_t)page);
+        printf("Allocated 1<<2 pages%lu\n",(uint64_t)page);
         
     }
 

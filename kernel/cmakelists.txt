@@ -6,14 +6,19 @@ project(kernel)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
-# Create main executable
-add_executable(main main.c)
 
 # Create memory_test executable
 add_executable(memory_test test/memory_test.c memory/buddy_system.c)
 
+add_executable(slab_test test/slab_test.c memory/buddy_system.c memory/slab.c)
+
 # Include directories for memory_test
 target_include_directories(memory_test 
+PRIVATE memory 
+PRIVATE util
+)
+
+target_include_directories(slab_test 
 PRIVATE memory 
 PRIVATE util
 )

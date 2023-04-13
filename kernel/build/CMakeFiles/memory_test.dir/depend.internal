@@ -3,9 +3,11 @@
 
 CMakeFiles/memory_test.dir/memory/buddy_system.c.o
  ../util/list.h
+ /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/PT.h
  /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/buddy_system.c
  /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/memory/buddy_system.h
 CMakeFiles/memory_test.dir/test/memory_test.c.o
+ ../memory/PT.h
  ../memory/buddy_system.h
  ../util/list.h
  /mnt/e/newLEARN/lablearn/ipads/competition/kernelDevelop/develop/kernel/test/memory_test.c

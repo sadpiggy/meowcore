@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/slab_test.dir/test/slab_test.c.o CMakeFiles/slab_test.dir/memory/buddy_system.c.o CMakeFiles/slab_test.dir/memory/slab.c.o  -o slab_test 

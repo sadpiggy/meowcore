@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include "PT.h"
 #define NR_QUANTUM 11
 struct physical_page {
     struct list_head list;
@@ -19,7 +20,8 @@ struct buddy_system {
 
 
 void buddy_init(struct buddy_system *buddy, struct physical_page *start_page, long page_num);
+//得到的是pages的基地址
 struct physical_page* buddy_alloc_pages(struct buddy_system *buddy, int order);
-void buddy_free_pages(struct buddy_system *buddy, struct physical_page *page);
+void buddy_free_pages(struct buddy_system *buddy, struct physical_page *page,int page_order);
 int get_order(int size);
 #endif

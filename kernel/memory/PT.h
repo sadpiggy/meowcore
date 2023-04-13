@@ -4,6 +4,9 @@
 // pte: [9:0]标志位；[53:10]ppn
 // vpn:9,9,9,9
 // ppn:17,9,9,9
+
+#define PAGE_SIZE 4096//4k
+
 #define RISCV_PG_LEVELS 4
 #define RISCV_PG_SHIFT 12 
 #define RISCV_PG_SIZE (1UL << RISCV_PG_SHIFT) 
